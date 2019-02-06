@@ -1,0 +1,32 @@
+<%t=Time.now %>
+  <H1>Hello <%= current_student.name %></H1>
+  <br />
+  <p>
+    Today is <%=@current_time.strftime("%A") %>, <%= @current_time.strftime("%B") %> <%= @current_time.strftime("%d") %>, <%= @current_time.strftime("%Y") %> <br />
+  </p>
+
+<form method="post" action="/students/<%= current_student.id%>/edit">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+
+  <h2>Check off the subjects you completed today:</h2>
+      <br />
+      <% @subjects.all.each do |subject| %>
+        <input id="<%= subject.id %>" type="checkbox" name="subject_ids[]" value='<%= subject.id %>' <%='checked' if current_student.subjects.include?(subject) %>><%=subject.name%> </input>
+          <br />
+      <% end %>
+              <br /><br />
+
+  <h2>Check off lessons you go to study today:</h2>
+      <br />
+      <% @lessons.all.each do |lesson| %>
+        <input id="<%= lesson.id %>" type="checkbox" name="lesson_ids[]" value="<%= lesson.id %>" <%='checked' if current_student.lessons.include?(lesson) %>><%=lesson.name%> </input>
+        <br />
+      <% end %>
+    <br /><br />
+    <input type="submit" name="Submit studylesson" value="Submit studylesson" />
+</form>
+<br /><br />
+  <form method="get" action='/students/logout'>
+    <input type='submit' id='signout' value='Sign Out' name='signout' />
+  </form>
+<a href='/students/show'>Head to display page without making changes.</a>

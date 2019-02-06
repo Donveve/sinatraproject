@@ -1,0 +1,14 @@
+<h1><%= current_student.name %>, are you sure you want to delete your account?</h1>
+
+<form method="post" action="/students/<%=current_student.id%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input id="delete" type="submit" name="delete" value="Yes">
+</form>
+
+<form method="get" action="/students/show">
+  <input id="show" type="submit" name="show" value="No">
+</form>
+
+<form method="get" action="/students/logout">
+  <input id="logout" type="submit" name="logout" value="Just log me out">
+</form>
