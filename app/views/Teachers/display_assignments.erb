@@ -1,0 +1,27 @@
+
+<h2>Current subject and lessons</h2>
+
+<h2>Current subjects</h2>
+<%Subject.all.each do |subject| %>
+  <ul>
+    <li><%=subject.name %></li>
+  </ul>
+<%end %>
+        <br />
+
+    <br />
+
+<h2>Current Lessons:</h2>
+<%Instrument.all.each do |instrument| %>
+  <ul>
+    <li><%=instrument.name %></li>
+  </ul>
+<%end %>
+<br />
+
+<br /><br />
+<a href="/teachers/edit_assignments">Edit assignments</a>
+<br /><br />
+<form method="get" action="/teachers/show">
+  <input id="display_assignment" type="submit" name="display_assignment" value="Return to my homepage">
+</form>
