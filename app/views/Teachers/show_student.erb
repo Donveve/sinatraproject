@@ -1,0 +1,30 @@
+<H1>Hello <%=current_teacher.name %></H1>
+  <br />
+  <p>
+    <%t=Time.now %>
+    Today is <%=@time.strftime("%A") %>, <%= @time.strftime("%B") %> <%= @time.strftime("%d") %>, <%= @time.strftime("%Y") %> <br />
+  </p>
+
+  <%if !@student.subjects.empty? %>
+    <h3><%= @student.name %> has completed:</h3><br />
+    <%@student.subjects.each do |s| %>
+      <%= s.name %>
+      <br />
+    <%end %>
+  <%else %>
+    <p><%=@student.name%> hasn't finished any subjects today.</p>
+  <%end %>
+
+  <%if !@student.lessons.empty? %>
+  <h3><%= @student.name %> has studied:</h3><br />
+    <%@student.lessons.each do |s| %>
+      <%= s.name %>
+      <br />
+    <%end %>
+  <%else %>
+      <p><%= @student.name %> hasn't studied any lessons today</p>
+  <%end %>
+<br /><br />
+
+  <a href="/teachers/show">Return to student view</a>
+  <br /><br />

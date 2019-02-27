@@ -1,0 +1,34 @@
+<td>
+  <%current_teacher.students.each do |s| %>
+    <input id="<%= s.name %>" type="checkbox" name="students[]"
+     value='<%= student.name %>' <%='checked' %>><%=student.name%>
+    </input>
+  <%end %>
+</td>
+<td>
+  <%Student.all.each do |s| %>
+    <%if !current_teacher.students.include?(s) %>
+    <%= s.name %>
+  <%end %>
+</td>
+
+
+
+
+<h3>Your student list:</h3>
+<%current_teacher.students.each do |s| %>
+  <input id="<%= s.name %>" type="checkbox" name="students[]"
+   value='<%= student.name %>' <%='checked' %>><%=student.name%>
+  </input>
+<%end %>
+
+<h3>Add students:</h3>
+<%Student.all.each do |s| %>
+  <ul>
+    <li>
+      <%if !current_teacher.students.include?(s) %>
+      <%= s.name %>
+      <%end %>
+    </li>
+  </ul>
+<%end %>

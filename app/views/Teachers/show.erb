@@ -1,0 +1,49 @@
+<h1>Hello <%=current_teacher.name %></h1>
+    <h6>  (if not <%=current_teacher.name %> <a href="/" > click here.)</a> </h6>
+    <br />
+    <p>
+      Today is <%=@time.strftime("%A") %>, <%= @time.strftime("%B") %> <%= @time.strftime("%d") %>, <%= @time.strftime("%Y") %> <br />
+    </p>
+
+    <%if current_teacher.students.empty? %>
+        <p>
+          You do not have any students.
+        </p>
+        <form method=get action="/teachers/<%=current_teacher.id%>/edit">
+          <input type="submit" id='add_students' value="Click to add students" name="add_students" />
+        </form>
+        <br />
+        <br /><br />
+      <%else %>
+        <% current_teacher.students.each do |student| %>
+          <h2> <a href='../../teachers/<%= student.id %>/show_student'><%= student.name %></a> </h2> <br />
+            <h4>Subjects Completed</h4> <br />
+                <%student.subjects.each do |subject| %>
+                  <p>
+                    <%= subject.name %>   <br
+                  </p>
+                <%end %> <br />
+
+            <h4>Lessons Studied</h4> <br />
+                <%student.lessons.each do |lesson| %>
+                  <p>
+                    <%= lesson.name %>   <br
+                  </p>
+                <%end %> <br /><br />
+        <%end %>
+  <%end %>
+
+<form method=get action='/teachers/edit_assignments'>
+  <input type="submit" id='edit_assignments' value="Edit Subjects and Lessons" name="edit_assignments" />
+</form>
+<br />
+
+<form method="get" action='/teachers/logout'>
+  <input type='submit' id='signout' value='Sign Out' name='signout' />
+</form>
+<br />
+
+<form method="get" action="/teachers/<%=current_teacher.id%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input id="delete" type="submit" name="delete" value="Want to delete your account?">
+</form>

@@ -1,0 +1,37 @@
+<h1>Hello <%= current_teacher.name %></h1>
+
+<form method="post" action="/teachers/<%= current_teacher.id%>/edit">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+<h3>Your student list:</h3>
+ <%if current_teacher.students.empty? %>
+    <p>  No current students</p>
+  <%end %>
+  <%current_teacher.students.each do |student| %>
+    <input id="<%= student.name %>" type="checkbox" name="students[]"
+     value='<%= student.name %>' <%='checked' %>><%=student.name%>
+   </input>
+   <br />
+<%end %>
+
+<h3>Add students:</h3>
+  <%Student.all.each do |student| %>
+    <%if !current_teacher.students.include?(student) %>
+      <input id="<%= student.name %>" type="checkbox" name="students_new[]"
+       value='<%= student.name %>' ><%=student.name%>
+        <br />
+    <%end %>
+  <%end %>
+  <br />
+  <input type='submit' id='edit' value='Submit Changes' name='edit' />
+</form>
+
+<br /><br />
+<form method="get" action='/teachers/logout'>
+  <input type='submit' id='signout' value='Sign Out' name='signout' />
+</form>
+
+<br />
+<form method="get" action="/teachers/<%=current_teacher.id%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input id="delete" type="submit" name="delete" value="Want to delete your account?">
+</form>
