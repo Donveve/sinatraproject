@@ -6,7 +6,9 @@ class StudentsController <  ApplicationController
       end
         erb :'students/create_student'
     end
-  
+
+
+
     post '/students/new' do
       student = Student.new(params[:student])
       if student.save
@@ -18,7 +20,7 @@ class StudentsController <  ApplicationController
         erb :'students/create_student'
       end
     end
-  
+
     get '/students/show' do
       if is_student_logged_in?
         @current_time = Time.now
@@ -28,14 +30,14 @@ class StudentsController <  ApplicationController
         erb :index
       end
     end
-  
+
     get '/students/login' do
       if session
         session.clear
       end
         erb :'/students/login'
     end
-  
+
     post '/students/login' do
       student = Student.find_by(username: params[:student][:username])
       if student && student.authenticate(params[:student][:password])
@@ -47,7 +49,7 @@ class StudentsController <  ApplicationController
         erb :'/students/login'
       end
     end
-  
+
     get '/students/:id/edit' do
       if is_student_logged_in?
         @lessons = Lesson.all
@@ -59,7 +61,7 @@ class StudentsController <  ApplicationController
         redirect "/students/login"
       end
     end
-  
+
     patch '/students/:id/edit' do
       if is_student_logged_in?
         current_student.lesson_ids = params[:lesson_ids]
@@ -78,7 +80,7 @@ class StudentsController <  ApplicationController
         redirect "/students/login"
       end
     end
-  
+
     get '/students/:id/delete' do
       if is_student_logged_in?
         if session[:student_id] == params[:id].to_i
@@ -88,7 +90,7 @@ class StudentsController <  ApplicationController
         erb :index
       end
     end
-  
+
     delete '/students/:id/delete' do
       if is_student_logged_in? && session[:student_id] == params[:id].to_i
           student = current_student
@@ -100,7 +102,7 @@ class StudentsController <  ApplicationController
         redirect "/students/login"
       end
     end
-  
+
     get '/students/logout' do
       if is_student_logged_in?
         session.clear

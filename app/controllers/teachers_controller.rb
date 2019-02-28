@@ -1,20 +1,19 @@
 class TeachersController <  ApplicationController
-    include Helpers
-  
+
     get '/teachers/new' do
       if session[:teacher_id]
         session.clear
       end
         erb :'teachers/create_teacher'
     end
-  
+
     get '/teachers/login' do
       if session[:teacher_id]
         session.clear
       end
         erb :'/teachers/login'
     end
-  
+
     post '/teachers/login' do
       teacher = Teacher.find_by(username: params[:teacher][:username])
       if teacher && teacher.authenticate(params[:teacher][:password])
@@ -26,7 +25,7 @@ class TeachersController <  ApplicationController
         erb :'/teachers/login'
       end
     end
-  
+
     post '/teachers/new' do
       teacher = Teacher.new(params[:teacher])
       if teacher.save
@@ -38,7 +37,7 @@ class TeachersController <  ApplicationController
         erb :'teachers/create_teacher'
       end
     end
-  
+
     get '/teachers/show' do
       teacher = current_teacher
       if teacher != nil
@@ -49,7 +48,7 @@ class TeachersController <  ApplicationController
         erb :index
       end
     end
-  
+
     get '/teachers/edit_assignments' do
       if is_teacher_logged_in?
         erb:'/teachers/edit_assignments'
@@ -58,7 +57,7 @@ class TeachersController <  ApplicationController
         redirect "/teachers/login"
       end
     end
-  
+
     patch '/teachers/edit_assignments' do
       if  is_teacher_logged_in?
         params[:new_subject].each do |subject|
@@ -66,19 +65,19 @@ class TeachersController <  ApplicationController
               Subject.create(name: subject )
           end
         end
-  
+
         params[:new_lesson].each do |lesson|
           if !lesson.empty?
               Lesson.create(name: lesson)
           end
         end
-  
+
         if params[:subjects]
           params[:subjects].each do |subject|
             Subject.find_by(name: subject).destroy
           end
         end
-  
+
         if params[:lessons]
           params[:lessons].each do |lesson|
             Lesson.find_by(name: lesson).destroy
@@ -90,7 +89,7 @@ class TeachersController <  ApplicationController
         redirect "/teachers/login"
       end
     end
-  
+
     get '/teachers/display_assignments' do
       if  is_teacher_logged_in?
         erb :'/teachers/display_assignments'
@@ -99,7 +98,7 @@ class TeachersController <  ApplicationController
         redirect "/teachers/login"
       end
     end
-  
+
     get '/teachers/:id/edit' do
       if  is_teacher_logged_in?
         teacher = current_teacher
@@ -109,7 +108,7 @@ class TeachersController <  ApplicationController
         redirect "/teachers/login"
       end
     end
-  
+
     patch '/teachers/:id/edit' do
       if  is_teacher_logged_in?
         teacher = current_teacher
@@ -119,7 +118,7 @@ class TeachersController <  ApplicationController
             teacher.students << Student.find_by(name: student_name)
           end
         end
-  
+
         if params[:students_new]
           params[:students_new].each do |student_name|
             teacher.students << Student.find_by(name: student_name)
@@ -132,7 +131,7 @@ class TeachersController <  ApplicationController
         redirect "/teachers/login"
       end
     end
-  
+
     get '/teachers/:id/show_student' do
       if  is_teacher_logged_in?
         @student = Student.find_by(id: params[:id])
@@ -143,7 +142,7 @@ class TeachersController <  ApplicationController
         redirect "/teachers/login"
       end
     end
-  
+
     get '/teachers/:id/delete' do
       if  is_teacher_logged_in?
         if session[:teacher_id] == params[:id].to_i
@@ -153,7 +152,7 @@ class TeachersController <  ApplicationController
         erb :index
       end
     end
-  
+
     delete '/teachers/:id/delete' do
       if is_teacher_logged_in?
         if session[:teacher_id] == params[:id].to_i
@@ -167,7 +166,7 @@ class TeachersController <  ApplicationController
         redirect "/teachers/login"
       end
     end
-  
+
     get '/teachers/logout' do
       if is_teacher_logged_in?
         session.clear
@@ -177,5 +176,5 @@ class TeachersController <  ApplicationController
         redirect "/teachers/login"
       end
     end
-  
+
   end
