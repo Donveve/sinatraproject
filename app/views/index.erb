@@ -1,19 +1,22 @@
-class StudentsController <  ApplicationController
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Union School</title>
+  </head>
+  <body>
+    <h1>Welcome to Union School</h1>
+    <br /><br />
+      Are you the teacher/parent?
+      <br />
+      <a href="/teachers/new">Sign Up</a> <br />
+      <a href="/teachers/login">Log In</a>
+      <br /><br /><br />
+      Are you a student?
+      <br />
+      <a href="/students/new">Sign Up</a> <br />
+      <a href="/students/login">Log In</a> <br />
 
-    get '/students/new' do
-      if session[:id]
-        redirect '/show'
-      else
-        erb :'students/create_student'
-      end
-    end
-  
-    post '/students/new' do
-  
-      redirect '/students/show'
-    end
-  
-    get '/students/login' do
-      erb :'/students/login'
-    end
-  end
+
+  </body>
+</html>

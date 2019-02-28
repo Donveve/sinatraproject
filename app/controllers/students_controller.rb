@@ -1,4 +1,4 @@
-class StudentsController <  ApplicationController
+class StudentsController < ApplicationController
 
     get '/students/new' do
       if session[:student_id]
