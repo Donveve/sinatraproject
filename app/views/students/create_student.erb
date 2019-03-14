@@ -1,15 +1,18 @@
-<h1>Welcome Student</h1>
-<h3>Register below:</h3>
-<br />
+<br/><center><h1 id = "label">Welcome Student</h1></center>
+<br/>
 
+<h3 id = "label1">Register below:</h3>
+
+<div class = "wrapper">
 <form method=POST action='/students/new'>
-  Name: <input type='text' id='student[name]' name='student[name]' required/><br /><br />
-  Username: <input type='text' id='student[username]' name='student[username]' required/><br /><br />
-  Grade:<input type='integer' id='student[grade]' name='student[grade]' required /><br /><br />
-  Password:<input type='password' id='student[password]' name='student[password]' required /><br /><br />
+  <p>Name: <input type='text' id='student[name]' name='student[name]' required/><br /></P>
+  <p>Username: <input type='text' id='student[username]' name='student[username]' required/><br /></p>
+  <p>Grade:<input type='integer' id='student[grade]' name='student[grade]' required /><br /></p>
+  <p>Password:<input type='password' id='student[password]' name='student[password]' required /><br /></p>
   <button type='submit'>Register</button>
 </form>
 
 <form method="get" action="/">
   <input id="main_screen" type="submit" name="main_screen" value="Return to main page">
 </form>
+</div>

@@ -1,13 +1,14 @@
 <h6>Student Log In</h6>
-<br />
-<h1>Welcome back</h1>
+<br /><br/>
+<center><h1 id = "label">Welcome back</h1></center>
 
+<div class = "wrapper">
 <form method='post' action ='/students/login'>
-  Username: <input type='text' id='student[username]' name='student[username]' required/><br /><br />
-  Password:<input type='password' id='student[password]' name='student[password]' required /><br /><br />
+<p>  Username: <input type='text' id='student[username]' name='student[username]' required/><br /></p>
+<p>  Password:<input type='password' id='student[password]' name='student[password]' required /><br /></p>
   <button type='submit'>Log In</button>
 </form>
-<br /><br />
+<br />
 <form method='get' action ='/students/new'>
     <button type='submit'>Not yet registered? Sign up here.</button>
 </form>
@@ -19,3 +20,4 @@
 <form method="get" action="/">
   <input id="main_screen" type="submit" name="main_screen" value="Return to main page">
 </form>
+</div>

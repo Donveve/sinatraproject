@@ -12,7 +12,7 @@
       <br />
     <%end %>
   <%else %>
-    <p><%=@student.name%> hasn't finished any subjects today.</p>
+    <p><%=@student.name%> does not do any homework today.</p>
   <%end %>
 
   <%if !@student.lessons.empty? %>
@@ -27,4 +27,4 @@
 <br /><br />
 
   <a href="/teachers/show">Return to student view</a>
-  <br /><br />
+<br /><br />

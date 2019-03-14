@@ -2,8 +2,9 @@ require './config/environment'
 
 
 class ApplicationController < Sinatra::Base
+  set :public_folder, 'public'
+
   configure do
-    set :public_folder, 'public'
     set :views, 'app/views'
     require 'sinatra/flash'
     enable :sessions
@@ -12,7 +13,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-      erb :index
+      erb :index, :layout => false
   end
 
   helpers do

@@ -1,37 +1,40 @@
-<h2>Current subject and lessons</h2>
-
+<h2>Current homework and lessons</h3>
+<div class = "wrapper">
 <form method="post" action="/teachers/edit_assignments">
   <input id="hidden" type="hidden" name="_method" value="patch">
 
-<h2>Current subjects</h2>
-<h6>Need to delete something? Check the box and it will be removed.</h6><br />
+<h4>Current homework</h4>
+<h5>Need to delete something? Check the box and it will be removed.</h5>
 <%Subject.all.each do |subject| %>
   <ul>
-    <li> <input id="<%= subject.name %>" type="checkbox" name="subjects[]" value="<%= subject.name %>" ><%=subject.name%> </input></li>
+  <p><li> <input id="<%= subject.name %>" type="checkbox" name="subjects[]" value="<%= subject.name %>" >
+    <%=subject.name%> </input></li></p>
   </ul>
 <%end %>
         <br />
-<label>Add new subjects here:</label>
+<h4>Add new homework here:</h4><br />
 <input id="new_subject" type="text" name="new_subject[]" >
 <input id="new_subject" type="text" name="new_subject[]" >
-<input id="new_subject" type="text" name="new_subject[]" >
+<input id="new_subject" type="text" name="new_subject[]" ><br />
 
+<br />
 
-    <br />
-
-<h2>Current Lessons:</h2>
-<h6>To remove an lesson, check the box.</h6><br />
+<h4>Current Lessons:</h4>
+<h5>To remove a lesson, check the box</h5><br/>
 <%Lesson.all.each do |lesson| %>
   <ul>
-      <li> <input id="<%= lesson.name %>" type="checkbox" name="lessons[]" value="<%= lesson.name %>" ><%=lesson.name%> </input></li>
+    <li> <input id="<%= lesson.name %>" type="checkbox" name="lessons[]" value="<%= lesson.name %>" >
+      <%=lesson.name%> </input></li>
   </ul>
 <%end %>
-<br />
-<label>Add new lessons here:</label>
-<input id="new_lesson" type="text" name="new_lesson[]" >
-<input id="new_lesson" type="text" name="new_lesson[]" >
+<br/>
+<h4>Add new lessons here:</h4><br />
 
-<br /><br />
+<input id="new_lesson" type="text" name="new_lesson[]" >
+<input id="new_lesson" type="text" name="new_lesson[]" ><br />
+
+
+<br />
 <input id="edit_assignment" type="submit" name="edit_assignment" value="Update assignments">
 </form>
 <br />
@@ -44,3 +47,4 @@
 <form method="get" action="/teachers/show">
   <input id="display_assignment" type="submit" name="display_assignment" value="Return to my homepage">
 </form>
+</div>

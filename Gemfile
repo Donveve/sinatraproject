@@ -1,19 +1,18 @@
 source 'http://rubygems.org'
-
 gem 'sinatra'
 gem 'activerecord', '~> 4.2', '>= 4.2.6', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'rake'
 gem 'require_all'
 gem 'thin'
-gem 'sqlite3'
+gem 'sqlite3', '1.3.13'
 gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem "tux"
 gem 'rack-flash3'
 gem 'sinatra-flash'
-
+gem 'rerun', '~> 0.9.0 '
 group :test do
   gem 'rspec'
   gem 'capybara'
