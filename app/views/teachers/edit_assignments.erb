@@ -1,50 +1,45 @@
-<h2>Current homework and lessons</h3>
-<div class = "wrapper">
-<form method="post" action="/teachers/edit_assignments">
-  <input id="hidden" type="hidden" name="_method" value="patch">
+<h2 >Current homework and lessons</h2>
 
-<h4>Current homework</h4>
-<h5>Need to delete something? Check the box and it will be removed.</h5>
-<%Subject.all.each do |subject| %>
-  <ul>
-  <p><li> <input id="<%= subject.name %>" type="checkbox" name="subjects[]" value="<%= subject.name %>" >
-    <%=subject.name%> </input></li></p>
-  </ul>
-<%end %>
-        <br />
-<h4>Add new homework here:</h4><br />
-<input id="new_subject" type="text" name="new_subject[]" >
-<input id="new_subject" type="text" name="new_subject[]" >
-<input id="new_subject" type="text" name="new_subject[]" ><br />
+  <form method="post" action="/teachers/edit_assignments">
+    <input id="hidden" type="hidden" name="_method" value="patch">
 
-<br />
-
-<h4>Current Lessons:</h4>
-<h5>To remove a lesson, check the box</h5><br/>
-<%Lesson.all.each do |lesson| %>
-  <ul>
-    <li> <input id="<%= lesson.name %>" type="checkbox" name="lessons[]" value="<%= lesson.name %>" >
-      <%=lesson.name%> </input></li>
-  </ul>
-<%end %>
-<br/>
-<h4>Add new lessons here:</h4><br />
-
-<input id="new_lesson" type="text" name="new_lesson[]" >
-<input id="new_lesson" type="text" name="new_lesson[]" ><br />
+  <h3 >Current subjects</h3>
+  <h6>Need to delete something? Check the box and it will be removed.</h6><br />
+  <%Subject.all.each do |subject| %>
+    <ul>
+      <li> <input id="<%= subject.name %>" type="checkbox" name="subjects[]" value="<%= subject.name %>" ><%=subject.name%> </input></li>
+    </ul>
+  <%end %>
+          <br />
+  <label>Add new subjects here:</label>
+  <input id="new_subject" type="text" name="new_subject[]" >
+  <input id="new_subject" type="text" name="new_subject[]" >
+  <input id="new_subject" type="text" name="new_subject[]" >
 
 
-<br />
-<input id="edit_assignment" type="submit" name="edit_assignment" value="Update assignments">
-</form>
-<br />
+      <br />
 
-<form method="get" action="/teachers/display_assignments">
-  <input id="display_assignment" type="submit" name="display_assignment" value="Return to view without editing">
-</form>
-<br />
+  <h2>Current lessons:</h2>
+  <%Lesson.all.each do |lesson| %>
+    <ul>
+        <li> <input id="<%= lesson.name %>" type="checkbox" name="lessons[]" value="<%= lesson.name %>" ><%=lesson.name%> </input></li>
+    </ul>
+  <%end %>
+  <br />
+  <label>Add new lessons here:</label>
+  <input id="new_lesson" type="text" name="new_lesson[]" >
+  <input id="new_lesson" type="text" name="new_lesson[]" >
 
-<form method="get" action="/teachers/show">
-  <input id="display_assignment" type="submit" name="display_assignment" value="Return to my homepage">
-</form>
-</div>
+  <br /><br />
+  <input id="edit_assignment" type="submit" name="edit_assignment" value="Update assignments">
+  </form>
+  <br />
+
+  <form method="get" action="/teachers/display_assignments">
+    <input id="display_assignment" type="submit" name="display_assignment" value="Return to view without editing">
+  </form>
+  <br />
+
+  <form method="get" action="/teachers/show">
+    <input id="display_assignment" type="submit" name="display_assignment" value="Return to my homepage">
+  </form>
